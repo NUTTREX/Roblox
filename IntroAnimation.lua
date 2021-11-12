@@ -112,8 +112,7 @@ Instances.Stroke.Color = Color3.new(0, 0, 0)
 Instances.Stroke.LineJoinMode = Enum.LineJoinMode.Miter
 Instances.Stroke.Thickness = 2
 
-spawn(function()
-    wait(1)
-    Create_Tween(Frame, {BackgroundTransparency = 0}, Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.5, false)
-    Create_Tween(Frame, {Size = UDim2.new(0, 0, 0, 100)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true)
-end)
+wait(1)
+
+Create_Tween(Instances.Frame, {BackgroundTransparency = 0}, Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.5, false)
+Create_Tween(Instances.Frame, {Size = UDim2.new(0, 0, 0, 100)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true)
