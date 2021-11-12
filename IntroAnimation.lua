@@ -1,3 +1,5 @@
+local Library = {
+
 local ScreenGui = Instance.new("ScreenGui")
 
 local Instances = {
@@ -13,6 +15,7 @@ if syn then
     syn.protect_gui(ScreenGui)
 end
 
+ScreenGui.Parent = game:GetService("CoreGui")
 ScreenGui.DisplayOrder = 2147483647
 ScreenGui.ResetOnSpawn = false
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -85,3 +88,7 @@ Instances.ImageLabel_2.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instances.ImageLabel_2.Size = UDim2.new(0.80000001192093, 0, 0.80000001192093, 0)
 Instances.ImageLabel_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Instances.ImageLabel_2.Name = 'ImageLabel1'
+
+}
+
+return Library
