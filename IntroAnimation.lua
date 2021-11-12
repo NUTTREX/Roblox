@@ -1,12 +1,32 @@
+local function Create_Tween(Object, Goal, Direction, Style, Time, WaitForTween)
+    Style = Style or {}
+    local Tween = game:GetService("TweenService"):Create(Object, TweenInfo.new(Time, Style, Direction), Goal)
+    Tween:Play()
+    if WaitForTween then
+        Tween.Completed:wait()
+    end
+end
+
+local function Create_Sound(Object, Volume, WaitForSound)
+    local Sound = Instance.new("Sound")
+    Sound.Parent = game:GetService("Workspace")
+    Sound.Volume = Volume or 1
+    Sound.SoundId = getsynasset(Object)
+    Sound:Play()
+	if WaitForSound then
+		Sound.Ended:Wait()
+	end
+end
+
 local ScreenGui = Instance.new("ScreenGui")
 
 local Instances = {
-    ["TextButton_1"] = Instance.new("TextButton"),
-    ["ImageLabel_1"] = Instance.new("ImageLabel"),
-    ["ImageLabel_2"] = Instance.new("ImageLabel"),
-    ["TextLabel_1"] = Instance.new("TextLabel"),
-    ["UIStroke_1"] = Instance.new("UIStroke"),
-    ["Frame_1"] = Instance.new("Frame"),
+    ["Button"] = Instance.new("TextButton"),
+    ["TopSide"] = Instance.new("ImageLabel"),
+    ["BotSide"] = Instance.new("ImageLabel"),
+    ["Text"] = Instance.new("TextLabel"),
+    ["Stroke"] = Instance.new("UIStroke"),
+    ["Frame"] = Instance.new("Frame"),
 }
 
 if syn then
@@ -16,73 +36,84 @@ end
 ScreenGui.Parent = game:GetService("CoreGui")
 ScreenGui.DisplayOrder = 2147483647
 ScreenGui.ResetOnSpawn = false
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-Instances.Frame_1.Parent = ScreenGui
-Instances.Frame_1.Active = true
-Instances.Frame_1.AnchorPoint = Vector2.new(0.5, 0.5)
-Instances.Frame_1.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-Instances.Frame_1.BackgroundTransparency = 0.10000000149012
-Instances.Frame_1.BorderColor3 = Color3.new(0, 0, 0)
-Instances.Frame_1.BorderSizePixel = 3
-Instances.Frame_1.ClipsDescendants = true
-Instances.Frame_1.Position = UDim2.new(0.5, 0, 0.5, 0)
-Instances.Frame_1.Size = UDim2.new(0.30000001192093, 0, 0.30000001192093, 0)
-Instances.Frame_1.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.Frame.Parent = ScreenGui
+Instances.Frame.Active = true
+Instances.Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.Frame.BackgroundColor3 = Color3.new(30, 30, 30)
+Instances.Frame.BackgroundTransparency = 0.1
+Instances.Frame.BorderColor3 = Color3.new(0, 0, 0)
+Instances.Frame.BorderSizePixel = 3
+Instances.Frame.ClipsDescendants = true
+Instances.Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.Frame.Size = UDim2.new(0, 0, 0, 0)
+Instances.Frame.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.Frame.ZIndex = 10
 
-Instances.UIStroke_1.Parent = Instances.Frame_1
-Instances.UIStroke_1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Instances.UIStroke_1.Color = Color3.new(0.313726, 0.313726, 0.313726)
-Instances.UIStroke_1.LineJoinMode = Enum.LineJoinMode.Miter
-Instances.UIStroke_1.Thickness = 2
+Instances.Text.Parent = Instances.Frame
+Instances.Text.Font = Enum.Font.SourceSans
+Instances.Text.TextColor3 = Color3.new(0, 0, 0)
+Instances.Text.TextSize = 14
+Instances.Text.AnchorPoint = Vector2.new(0.5, 1)
+Instances.Text.BackgroundColor3 = Color3.new(0, 0, 0)
+Instances.Text.BorderColor3 = Color3.new(0, 0, 0)
+Instances.Text.BorderSizePixel = 0
+Instances.Text.Position = UDim2.new(0.5, 0, 1, 0)
+Instances.Text.Size = UDim2.new(1, 0, 0, 30)
+Instances.Text.BackgroundTransparency = 1
+Instances.Text.TextStrokeTransparency = 1
+Instances.Text.ZIndex = 20
 
-Instances.TextButton_1.Parent = Instances.Frame_1
-Instances.TextButton_1.Font = Enum.Font.SourceSans
-Instances.TextButton_1.Text = ''
-Instances.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
-Instances.TextButton_1.TextSize = 14
-Instances.TextButton_1.TextTransparency = 1
-Instances.TextButton_1.Active = false
-Instances.TextButton_1.AnchorPoint = Vector2.new(0.5, 0.5)
-Instances.TextButton_1.BackgroundColor3 = Color3.new(0, 0, 0)
-Instances.TextButton_1.BackgroundTransparency = 1
-Instances.TextButton_1.BorderColor3 = Color3.new(0, 0, 0)
-Instances.TextButton_1.BorderSizePixel = 0
-Instances.TextButton_1.Position = UDim2.new(0.5, 0, 0.5, 0)
-Instances.TextButton_1.Size = UDim2.new(1, 0, 1, 0)
+Instances.TopSide.Parent = Instances.Frame
+Instances.TopSide.Image = getsynasset('Assets/SKULL_TOP_V2.png')
+Instances.TopSide.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.TopSide.BackgroundColor3 = Color3.new(0, 0, 0)
+Instances.TopSide.BackgroundTransparency = 1
+Instances.TopSide.BorderColor3 = Color3.new(0, 0, 0)
+Instances.TopSide.BorderSizePixel = 0
+Instances.TopSide.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.TopSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.TopSide.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.TopSide.Name = 'ImageLabel2'
+Instances.TopSide.ZIndex = 30
 
-Instances.TextLabel_1.Parent = Instances.Frame_1
-Instances.TextLabel_1.Font = Enum.Font.SourceSans
-Instances.TextLabel_1.TextColor3 = Color3.new(0, 0, 0)
-Instances.TextLabel_1.TextSize = 14
-Instances.TextLabel_1.AnchorPoint = Vector2.new(0.5, 1)
-Instances.TextLabel_1.BackgroundColor3 = Color3.new(0, 0, 0)
-Instances.TextLabel_1.BackgroundTransparency = 1
-Instances.TextLabel_1.BorderColor3 = Color3.new(0, 0, 0)
-Instances.TextLabel_1.BorderSizePixel = 0
-Instances.TextLabel_1.Position = UDim2.new(0.5, 0, 1, 0)
-Instances.TextLabel_1.Size = UDim2.new(1, 0, 0, 30)
+Instances.BotSide.Parent = Instances.Frame
+Instances.BotSide.Image = getsynasset('Assets/SKULL_BOT_V2.png')
+Instances.BotSide.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.BotSide.BackgroundColor3 = Color3.new(0, 0, 0)
+Instances.BotSide.BackgroundTransparency = 1
+Instances.BotSide.BorderColor3 = Color3.new(0, 0, 0)
+Instances.BotSide.BorderSizePixel = 0
+Instances.BotSide.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.BotSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.BotSide.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.BotSide.Name = 'ImageLabel1'
+Instances.BotSide.ZIndex = 30
 
-Instances.ImageLabel_1.Parent = Instances.Frame_1
-Instances.ImageLabel_1.Image = 'http://www.roblox.com/asset/?id=6924552858'
-Instances.ImageLabel_1.AnchorPoint = Vector2.new(0.5, 0.5)
-Instances.ImageLabel_1.BackgroundColor3 = Color3.new(0, 0, 0)
-Instances.ImageLabel_1.BackgroundTransparency = 1
-Instances.ImageLabel_1.BorderColor3 = Color3.new(0, 0, 0)
-Instances.ImageLabel_1.BorderSizePixel = 0
-Instances.ImageLabel_1.Position = UDim2.new(0.5, 0, 0.5, 0)
-Instances.ImageLabel_1.Size = UDim2.new(0.80000001192093, 0, 0.80000001192093, 0)
-Instances.ImageLabel_1.SizeConstraint = Enum.SizeConstraint.RelativeYY
-Instances.ImageLabel_1.Name = 'ImageLabel2'
+Instances.Button.Parent = Instances.Frame
+Instances.Button.Font = Enum.Font.SourceSans
+Instances.Button.Text = ''
+Instances.Button.TextColor3 = Color3.new(0, 0, 0)
+Instances.Button.TextSize = 14
+Instances.Button.TextTransparency = 1
+Instances.Button.Active = false
+Instances.Button.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.Button.BackgroundColor3 = Color3.new(0, 0, 0)
+Instances.Button.BackgroundTransparency = 1
+Instances.Button.BorderColor3 = Color3.new(0, 0, 0)
+Instances.Button.BorderSizePixel = 0
+Instances.Button.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.Button.Size = UDim2.new(1, 0, 1, 0)
+Instances.Button.ZIndex = 50
 
-Instances.ImageLabel_2.Parent = Instances.Frame_1
-Instances.ImageLabel_2.Image = 'http://www.roblox.com/asset/?id=6924553183'
-Instances.ImageLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
-Instances.ImageLabel_2.BackgroundColor3 = Color3.new(0, 0, 0)
-Instances.ImageLabel_2.BackgroundTransparency = 1
-Instances.ImageLabel_2.BorderColor3 = Color3.new(0, 0, 0)
-Instances.ImageLabel_2.BorderSizePixel = 0
-Instances.ImageLabel_2.Position = UDim2.new(0.5, 0, 0.5, 0)
-Instances.ImageLabel_2.Size = UDim2.new(0.80000001192093, 0, 0.80000001192093, 0)
-Instances.ImageLabel_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
-Instances.ImageLabel_2.Name = 'ImageLabel1'
+Instances.Stroke.Parent = Instances.Frame
+Instances.Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instances.Stroke.Color = Color3.new(0, 0, 0)
+Instances.Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+Instances.Stroke.Thickness = 2
+
+spawn(function()
+    wait(1)
+    Create_Tween(Frame, {BackgroundTransparency = 0}, Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.5, false)
+    Create_Tween(Frame, {Size = UDim2.new(0, 0, 0, 100)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true)
+end)
