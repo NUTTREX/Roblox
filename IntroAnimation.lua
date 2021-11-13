@@ -167,10 +167,12 @@ Create_Tween(Instances.Frame, {Size = UDim2.new(0, 300, 0, 300)}, Enum.EasingDir
 Instances.BotSide.Size = UDim2.new(0.8, 0, 0.8, 0)
 Instances.TopSide.Size = UDim2.new(0.8, 0, 0.8, 0)
 Instances.BotSide.Position = UDim2.new(0.5, 0, 1.5, 0)
-Instances.TopSide.Position = UDim2.new(0.5, 0, 1.5, 0)
+Instances.TopSide.Position = UDim2.new(0.5, 0, -1, 0)
+Instances.BotSide.ImageTransparency = 1
+Instances.TopSide.ImageTransparency = 1
 
-Create_Tween(Instances.BotSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, false)
-Create_Tween(Instances.TopSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, false)
+Create_Tween(Instances.BotSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.8, false)
+Create_Tween(Instances.TopSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.8, false)
 Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, false)
 Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, false)
 
