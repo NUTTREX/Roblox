@@ -1,5 +1,6 @@
 local Player = game:GetService("Players").LocalPlayer
 local Input = Player:GetMouse()
+local Debris = game:GetService("Debris")
 
 local function Create_Tween(Object, Goal, Direction, Style, Time, WaitForTween)
     Style = Style or {}
@@ -152,7 +153,7 @@ Instances.BlueBot.Name = 'ImageLabel1'
 Instances.BlueBot.ZIndex = 20
 
 Instances.Text.Parent = Instances.Frame
-Instances.Text.Text = "Welcome, "..tostring(game:GetService("Players").LocalPlayer.Name)
+Instances.Text.Text = "Welcome, **********"--..tostring(game:GetService("Players").LocalPlayer.Name)
 Instances.Text.Font = Enum.Font.SourceSansLight
 Instances.Text.TextColor3 = Color3.fromRGB(255, 255, 255)
 Instances.Text.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
@@ -233,7 +234,7 @@ Create_Tween(Instances.Text, {TextTransparency = 0}, Enum.EasingDirection.InOut,
 task.wait(1)
 Create_Tween(Instances.Text, {TextStrokeTransparency = 1}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, false)
 Create_Tween(Instances.Text, {TextTransparency = 1}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, true)
-Instances.Text.Text = "UI | NUTREX"
+Instances.Text.Text = "UI | ******"
 Create_Tween(Instances.Text, {TextStrokeTransparency = 0}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, false)
 Create_Tween(Instances.Text, {TextTransparency = 0}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, true)
 task.wait(1)
@@ -351,11 +352,7 @@ Instances.Button.MouseButton1Click:Connect(function()
 		Create_Tween(Instances.BotSide, {ImageTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
 		Create_Tween(Instances.TopSide, {ImageTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
         Create_Tween(Instances.Frame, {Size = UDim2.new(0, 0, 0, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1, false)
-		Create_Tween(Instances.Frame, {BackgroundTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1, false)
-        task.wait(1)
-        Instances.Frame.Visible = false
+		Create_Tween(Instances.Frame, {BackgroundTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1, true)
+        Debris:AddItem(ScreenGui, 1)
     end
 end)
-
-task.wait(8)
-ScreenGui:Destroy()
