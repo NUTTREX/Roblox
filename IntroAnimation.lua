@@ -1,3 +1,6 @@
+local Player = game:GetService("Players").LocalPlayer
+local Input = Player:GetMouse()
+
 local function Create_Tween(Object, Goal, Direction, Style, Time, WaitForTween)
     Style = Style or {}
     local Tween = game:GetService("TweenService"):Create(Object, TweenInfo.new(Time, Style, Direction), Goal)
@@ -16,6 +19,16 @@ local function Create_Sound(Object, Volume, WaitForSound)
 	if WaitForSound then
 		Sound.Ended:Wait()
 	end
+end
+
+local function IsHoveringOverObject(Object)
+    local TX = Object.AbsolutePosition.X
+    local TY = Object.AbsolutePosition.Y
+    local BX = TX + Object.AbsoluteSize.X
+    local BY = TY + Object.AbsoluteSize.Y
+    if Input.X >= TX and Input.Y >= TY and Input.X <= BX and Input.Y <= BY then
+        return true
+    end
 end
 
 if not isfile("Assets") then
@@ -51,6 +64,10 @@ local Instances = {
     ["Text"] = Instance.new("TextLabel"),
     ["Stroke"] = Instance.new("UIStroke"),
     ["Frame"] = Instance.new("Frame"),
+    ["BlueTop"] = Instance.new("ImageLabel"),
+    ["BlueBot"] = Instance.new("ImageLabel"),
+    ["RedTop"] = Instance.new("ImageLabel"),
+    ["RedBot"] = Instance.new("ImageLabel"),
 }
 
 if syn then
@@ -73,6 +90,66 @@ Instances.Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instances.Frame.Size = UDim2.new(0, 0, 0, 0)
 Instances.Frame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Instances.Frame.ZIndex = 10
+
+Instances.RedTop.Parent = Instances.Frame
+Instances.RedTop.Image = getsynasset('Assets/SKULL_TOP_V2.png')
+Instances.RedTop.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.RedTop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Instances.RedTop.BackgroundTransparency = 1
+Instances.RedTop.ImageTransparency = 0
+Instances.RedTop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Instances.RedTop.BorderSizePixel = 0
+Instances.RedTop.ImageColor3 = Color3.fromRGB(255, 0, 0)
+Instances.RedTop.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.RedTop.Size = UDim2.new(0, 0, 0, 0)
+Instances.RedTop.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.RedTop.Name = 'ImageLabel1'
+Instances.RedTop.ZIndex = 20
+
+Instances.RedBot.Parent = Instances.Frame
+Instances.RedBot.ImageColor3 = Color3.fromRGB(255, 0, 0)
+Instances.RedBot.Image = getsynasset('Assets/SKULL_BOT_V2.png')
+Instances.RedBot.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.RedBot.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Instances.RedBot.BackgroundTransparency = 1
+Instances.RedBot.ImageTransparency = 0
+Instances.RedBot.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Instances.RedBot.BorderSizePixel = 0
+Instances.RedBot.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.RedBot.Size = UDim2.new(0, 0, 0, 0)
+Instances.RedBot.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.RedBot.Name = 'ImageLabel1'
+Instances.RedBot.ZIndex = 20
+
+Instances.BlueTop.Parent = Instances.Frame
+Instances.BlueTop.Image = getsynasset('Assets/SKULL_TOP_V2.png')
+Instances.BlueTop.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.BlueTop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Instances.BlueTop.BackgroundTransparency = 1
+Instances.BlueTop.ImageTransparency = 0
+Instances.BlueTop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Instances.BlueTop.BorderSizePixel = 0
+Instances.BlueTop.ImageColor3 = Color3.fromRGB(0, 255, 255)
+Instances.BlueTop.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.BlueTop.Size = UDim2.new(0, 0, 0, 0)
+Instances.BlueTop.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.BlueTop.Name = 'ImageLabel1'
+Instances.BlueTop.ZIndex = 20
+
+Instances.BlueBot.Parent = Instances.Frame
+Instances.BlueBot.ImageColor3 = Color3.fromRGB(0, 255, 255)
+Instances.BlueBot.Image = getsynasset('Assets/SKULL_BOT_V2.png')
+Instances.BlueBot.AnchorPoint = Vector2.new(0.5, 0.5)
+Instances.BlueBot.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Instances.BlueBot.BackgroundTransparency = 1
+Instances.BlueBot.ImageTransparency = 0
+Instances.BlueBot.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Instances.BlueBot.BorderSizePixel = 0
+Instances.BlueBot.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instances.BlueBot.Size = UDim2.new(0, 0, 0, 0)
+Instances.BlueBot.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Instances.BlueBot.Name = 'ImageLabel1'
+Instances.BlueBot.ZIndex = 20
 
 Instances.Text.Parent = Instances.Frame
 Instances.Text.Text = "Welcome, "..tostring(game:GetService("Players").LocalPlayer.Name)
@@ -164,17 +241,121 @@ Create_Tween(Instances.Text, {TextStrokeTransparency = 1}, Enum.EasingDirection.
 Create_Tween(Instances.Text, {TextTransparency = 1}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, false)
 Create_Tween(Instances.Text, {Position = UDim2.new(0.5, 0, 1, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
 Create_Tween(Instances.Frame, {Size = UDim2.new(0, 300, 0, 300)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad , 0.3, true)
-Instances.BotSide.Size = UDim2.new(0.8, 0, 0.8, 0)
-Instances.TopSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+
+Instances.BotSide.Size = UDim2.new(0.8, 0, 0.8, 0) -- This is because of synapse x getsynasset being a buggy mess :-)
 Instances.BotSide.Position = UDim2.new(0.5, 0, 1.5, 0)
-Instances.TopSide.Position = UDim2.new(0.5, 0, -1, 0)
 Instances.BotSide.ImageTransparency = 1
+
+Instances.TopSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.TopSide.Position = UDim2.new(0.5, 0, -1, 0)
 Instances.TopSide.ImageTransparency = 1
 
+Instances.BlueTop.Size = UDim2.new(0.8, 0, 0.8, 0) -- This is because of synapse x getsynasset being a buggy mess :-)
+Instances.BlueTop.Position = UDim2.new(0.5, 0, -1, 0)
+Instances.BlueTop.ImageTransparency = 1
+
+Instances.BlueBot.Size = UDim2.new(0.8, 0, 0.8, 0) -- This is because of synapse x getsynasset being a buggy mess :-)
+Instances.BlueBot.Position = UDim2.new(0.5, 0, 1.5, 0)
+Instances.BlueBot.ImageTransparency = 1
+
+Instances.RedTop.Size = UDim2.new(0.8, 0, 0.8, 0) -- This is because of synapse x getsynasset being a buggy mess :-)
+Instances.RedTop.Position = UDim2.new(0.5, 0, -1, 0)
+Instances.RedTop.ImageTransparency = 1
+
+Instances.RedBot.Size = UDim2.new(0.8, 0, 0.8, 0) -- This is because of synapse x getsynasset being a buggy mess :-)
+Instances.RedBot.Position = UDim2.new(0.5, 0, 1.5, 0)
+Instances.RedBot.ImageTransparency = 1
+
+Create_Sound('Assets/SKULL_IN.ogg', 1, false)
 Create_Tween(Instances.BotSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.8, false)
 Create_Tween(Instances.TopSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.8, false)
-Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, false)
-Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, false)
 
-task.wait(3)
+Instances.BlueBot.ImageTransparency = 0
+Instances.BlueTop.ImageTransparency = 0
+Instances.RedBot.ImageTransparency = 0
+Instances.RedTop.ImageTransparency = 0
+
+Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.8, false)
+Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.8, false)
+task.wait(1)
+for _=1, 15 do
+    Create_Tween(Instances.BlueTop, {Position = UDim2.new(0.5, math.random(-20, 10), 0.5, math.random(-20, 10))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BlueBot, {Position = UDim2.new(0.5, math.random(-20, 10), 0.5, math.random(-20, 10))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+
+    Create_Tween(Instances.RedTop, {Position = UDim2.new(0.5, math.random(-10, 20), 0.5, math.random(-10, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.RedBot, {Position = UDim2.new(0.5, math.random(-10, 20), 0.5, math.random(-10, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+
+    Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, math.random(-20, 20), 0.5,  math.random(-20, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, math.random(-20, 20), 0.5,  math.random(-20, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, true)
+
+    Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BlueTop, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.RedBot, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.RedTop, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BlueBot, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, true)
+
+    Create_Tween(Instances.BlueTop, {Position = UDim2.new(0.5, math.random(-20, 10), 0.5, math.random(-20, 10))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BlueBot, {Position = UDim2.new(0.5, math.random(-20, 10), 0.5, math.random(-20, 10))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+
+    Create_Tween(Instances.RedTop, {Position = UDim2.new(0.5, math.random(-10, 20), 0.5, math.random(-10, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.RedBot, {Position = UDim2.new(0.5, math.random(-10, 20), 0.5, math.random(-10, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+
+    Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, math.random(-20, 20), 0.5,  math.random(-20, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, math.random(-20, 20), 0.5,  math.random(-20, 20))}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, true)
+
+    Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BlueBot, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.RedBot, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.RedTop, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BlueTop, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, false)
+    Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Elastic, 0.01, true)
+
+end
+
+spawn(function()
+Instances.BlueBot.ImageTransparency = 1
+Instances.BlueTop.ImageTransparency = 1
+Instances.RedBot.ImageTransparency = 1
+Instances.RedTop.ImageTransparency = 1
+end)
+
+if IsHoveringOverObject(Instances.Button) then -- Checks For If the mouse is hovering before object renders
+    Create_Tween(Instances.Frame, {BorderColor3 = Color3.fromRGB(0, 150, 255)}, Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.15, false)
+end
+
+Instances.Button.MouseEnter:Connect(function()
+    Create_Tween(Instances.Frame, {BorderColor3 = Color3.fromRGB(0, 150, 255)}, Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.15, false)
+end)
+
+Instances.Button.MouseLeave:Connect(function()
+    Create_Tween(Instances.Frame, {BorderColor3 = Color3.fromRGB(0, 0, 0)}, Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.15, false)
+end)
+local IsLoaded = false
+Instances.Button.MouseButton1Click:Connect(function()
+    if not IsLoaded then
+        IsLoaded = true
+        Create_Sound('Assets/SKULL_LAUGH.ogg', 1)
+        for _= 1, 10 do
+            Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.55, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1741, true)
+            Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.In, Enum.EasingStyle.Linear, 0.1741, true)
+        end
+        task.wait(0.478)
+        Instances.Frame.ClipsDescendants = false
+        Create_Sound('Assets/SKULL_OUT.ogg', 1)
+        Create_Tween(Instances.BotSide, {Size = UDim2.new(1, -150, 1, -150)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
+		Create_Tween(Instances.TopSide, {Size = UDim2.new(1, -150, 1, -150)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, true) -- BACK
+        Create_Tween(Instances.Stroke, {Transparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
+		Create_Tween(Instances.BotSide, {Size = UDim2.new(1000, 0, 1000, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
+		Create_Tween(Instances.TopSide, {Size = UDim2.new(1000, 0, 1000, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false) -- FRONT
+		Create_Tween(Instances.BotSide, {ImageTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
+		Create_Tween(Instances.TopSide, {ImageTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.2, false)
+        Create_Tween(Instances.Frame, {Size = UDim2.new(0, 0, 0, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1, false)
+		Create_Tween(Instances.Frame, {BackgroundTransparency = 1}, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1, false)
+        task.wait(1)
+        Instances.Frame.Visible = false
+    end
+end)
+
+task.wait(8)
 ScreenGui:Destroy()
