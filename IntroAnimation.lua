@@ -98,11 +98,11 @@ Instances.TopSide.Image = getsynasset('Assets/SKULL_TOP_V2.png')
 Instances.TopSide.AnchorPoint = Vector2.new(0.5, 0.5)
 Instances.TopSide.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Instances.TopSide.BackgroundTransparency = 1
-Instances.TopSide.ImageTransparency = 1
+Instances.TopSide.ImageTransparency = 0
 Instances.TopSide.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Instances.TopSide.BorderSizePixel = 0
 Instances.TopSide.Position = UDim2.new(0.5, 0, 0.5, 0)
-Instances.TopSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.TopSide.Size = UDim2.new(0, 0, 0, 0)
 Instances.TopSide.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Instances.TopSide.Name = 'ImageLabel2'
 Instances.TopSide.ZIndex = 30
@@ -112,11 +112,11 @@ Instances.BotSide.Image = getsynasset('Assets/SKULL_BOT_V2.png')
 Instances.BotSide.AnchorPoint = Vector2.new(0.5, 0.5)
 Instances.BotSide.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Instances.BotSide.BackgroundTransparency = 1
-Instances.BotSide.ImageTransparency = 1
+Instances.BotSide.ImageTransparency = 0
 Instances.BotSide.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Instances.BotSide.BorderSizePixel = 0
 Instances.BotSide.Position = UDim2.new(0.5, 0, 0.5, 0)
-Instances.BotSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.BotSide.Size = UDim2.new(0, 0, 0, 0)
 Instances.BotSide.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Instances.BotSide.Name = 'ImageLabel1'
 Instances.BotSide.ZIndex = 30
@@ -161,7 +161,18 @@ Create_Tween(Instances.Text, {TextStrokeTransparency = 0}, Enum.EasingDirection.
 Create_Tween(Instances.Text, {TextTransparency = 0}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, true)
 task.wait(1)
 Create_Tween(Instances.Text, {TextStrokeTransparency = 1}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, false)
-Create_Tween(Instances.Text, {TextTransparency = 1}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, true)
+Create_Tween(Instances.Text, {TextTransparency = 1}, Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.5, false)
+Create_Tween(Instances.Text, {Position = UDim2.new(0.5, 0, 1, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+Create_Tween(Instances.Frame, {Size = UDim2.new(0, 300, 0, 300)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad , 0.3, true)
+Instances.BotSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.TopSide.Size = UDim2.new(0.8, 0, 0.8, 0)
+Instances.BotSide.Position = UDim2.new(0.5, 0, 1.5, 0)
+Instances.TopSide.Position = UDim2.new(0.5, 0, 1.5, 0)
 
-task.wait(5)
+Create_Tween(Instances.BotSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, false)
+Create_Tween(Instances.TopSide, {ImageTransparency = 0}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, false)
+Create_Tween(Instances.TopSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, false)
+Create_Tween(Instances.BotSide, {Position = UDim2.new(0.5, 0, 0.5, 0)}, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, false)
+
+task.wait(3)
 ScreenGui:Destroy()
