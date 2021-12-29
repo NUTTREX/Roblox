@@ -11,6 +11,6 @@ Services.WorkSpace = game:GetService("Workspace")
 Services.Lighting = game:GetService("Lighting")
 Services.Players = game:GetService('Players')
 Services.Debris = game:GetService('Debris')
-Services.Player = Players.LocalPlayer
+Services.Player = Services.Players.LocalPlayer
 
 return Services
