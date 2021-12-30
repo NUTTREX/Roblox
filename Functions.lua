@@ -46,3 +46,5 @@ Functions.Create_Sound = function(Object, Volume, WaitForSound)
         Services.Debris:AddItem(Sound, 1)
     end)
 end
+
+return Functions
