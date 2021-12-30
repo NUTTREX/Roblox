@@ -10,6 +10,7 @@ Services.RunService = game:GetService("RunService")
 Services.WorkSpace = game:GetService("Workspace")
 Services.Lighting = game:GetService("Lighting")
 Services.Players = game:GetService('Players')
+Services.CoreGui = game:GetService('CoreGui)
 Services.Debris = game:GetService('Debris')
 Services.Player = Services.Players.LocalPlayer
 
