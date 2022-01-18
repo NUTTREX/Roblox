@@ -14,7 +14,7 @@ local Services = loadstring(game:HttpGet('https://raw.githubusercontent.com/NUTT
 local Functions = {}
 
 Functions.Generate_String = function(Number)
-    local String
+    local String = ""
     for Index = 0, Number, 1 do
         String = String..tostring(utf8.char(math.random(63744, 64109)))
     end
